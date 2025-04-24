@@ -1,0 +1,46 @@
+<h2>Task Filter & Status Update</h2>
+
+<form method="get">
+    <label>Status:</label>
+    <select name="status">
+        <option value="">All</option>
+        <option value="pending">Pending</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Completed</option>
+    </select>
+
+    <label>User:</label>
+    <input type="text" name="user" placeholder="Username">
+
+    <label>Farm:</label>
+    <input type="text" name="farm" placeholder="Farm Name">
+
+    <button type="submit">Filter</button>
+</form>
+
+<hr>
+
+<table border="1">
+    <tr>
+        <th>Task</th>
+        <th>Status</th>
+        <th>Update Status</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.title }}</td>
+        <td>{{ task.status }}</td>
+        <td>
+            <form method="post" action="{% url 'update_task_status' task.id %}">
+                {% csrf_token %}
+                <select name="new_status">
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

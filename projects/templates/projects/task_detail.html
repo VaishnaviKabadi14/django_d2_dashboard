@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ task.title }}</title>
+</head>
+<body>
+    <h2>{{ task.title }}</h2>
+    <p><strong>Due Date:</strong> {{ task.due_date }}</p>
+    <p><strong>Status:</strong> {{ task.status }}</p>
+    <p><strong>Assigned To:</strong> {{ task.assigned_to }}</p>
+    <p><strong>Project:</strong> {{ task.project.title }}</p>
+    <a href="/calendar/">Back to Calendar</a>
+</body>
+</html>

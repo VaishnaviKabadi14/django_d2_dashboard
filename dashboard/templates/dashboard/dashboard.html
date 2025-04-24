@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Dashboard Overview</h1>
+
+    <div>
+        <p>Total Farms: {{ total_farms }}</p>
+        <p>Total Fields: {{ total_fields }}</p>
+        <p>Total Crops: {{ total_crops }}</p>
+        <p>Total Projects: {{ total_projects }}</p>
+    </div>
+
+    <canvas id="taskChart" width="400" height="200"></canvas>
+
+    <script>
+        const ctx = document.getElementById('taskChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pending', 'In Progress', 'Completed'],
+                datasets: [{
+                    label: 'Task Status Overview',
+                    data: [
+                        {{ task_counts.pending }},
+                        {{ task_counts.in_progress }},
+                        {{ task_counts.completed }}
+                    ],
+                    backgroundColor: [
+                        'orange',
+                        'blue',
+                        'green'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
